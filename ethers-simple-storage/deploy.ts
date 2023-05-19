@@ -1,12 +1,19 @@
-const ethers = require('ethers');
-const fs = require('fs-extra');
-require('dotenv').config();
+// const ethers = require('ethers');
+// const fs = require('fs-extra');
+// require('dotenv').config();
+
+import { ethers } from 'ethers';
+import * as fs from 'fs-extra';
+import 'dotenv/config';
 
 let main = async () => {
     const provider = new ethers.providers.JsonRpcProvider(
-        process.env.RPC_URL_SEPOLIA
+        process.env.RPC_URL_SEPOLIA!
     );
-    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY_SEPOLIA, provider);
+    const wallet = new ethers.Wallet(
+        process.env.PRIVATE_KEY_SEPOLIA!,
+        provider
+    );
     const abi = fs.readFileSync(
         './SimpleStorage_sol_SimpleStorage.abi',
         'utf8'
